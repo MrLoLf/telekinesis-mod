@@ -1,12 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.fabricmc.example.mixin",
+  "package": "com.mymindstorm.telekinesis.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "BlockItemDropEventMixin"
   ],
-  "client": [
-    "ExampleMixin"
+  "server": [
+    "BlockItemDropEventMixin"
   ],
   "injectors": {
     "defaultRequire": 1

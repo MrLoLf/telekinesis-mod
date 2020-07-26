@@ -1,37 +1,39 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "telekinesis",
   "version": "${version}",
 
-  "name": "Example Mod",
+  "name": "Telekinesis Mod",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Me!"
+    {
+      "name": "mymindstorm",
+      "contact": {
+        "homepage": "https://github.com/mymindstorm"
+      }
+    }
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/mymindstorm/telekinesis-mod",
+    "sources": "https://github.com/mymindstorm/telekinesis-mod.git",
+    "issues": "https://github.com/mymindstorm/telekinesis-mod/issues"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "MIT",
+  "icon": "assets/telekinesis/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "com.mymindstorm.telekinesis.TelekinesisMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "telekinesis.mixins.json"
   ],
-
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",
     "minecraft": "1.16.x"
-  },
-  "suggests": {
-    "flamingo": "*"
   }
 }
