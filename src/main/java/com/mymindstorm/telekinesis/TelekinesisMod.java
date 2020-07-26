@@ -1,5 +1,6 @@
 package com.mymindstorm.telekinesis;
 
+import com.mymindstorm.telekinesis.event.BlockItemDropEvent;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;

@@ -1,4 +1,4 @@
-package com.mymindstorm.telekinesis;
+package com.mymindstorm.telekinesis.event;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
