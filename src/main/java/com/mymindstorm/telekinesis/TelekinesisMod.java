@@ -1,10 +1,14 @@
 package com.mymindstorm.telekinesis;
 
 import com.mymindstorm.telekinesis.event.BlockItemDropEvent;
+import com.mymindstorm.telekinesis.event.EntityItemDropEvent;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -35,6 +39,32 @@ public class TelekinesisMod implements ModInitializer {
 				});
 
 				return false;
+			}
+			return true;
+		});
+
+		EntityItemDropEvent.EVENT.register((source, causedByPlayer, lootTable, lootContext, world, entityDropStack) -> {
+			if (causedByPlayer) {
+				Entity attacker = source.getAttacker();
+				if (attacker == null) {
+					return true;
+				}
+
+				PlayerEntity player = world.getPlayerByUuid(attacker.getUuid());
+				if (player == null) {
+					return true;
+				}
+
+				// TODO: what if the weapon is in off hand?
+				ItemStack playerWeapon = player.getMainHandStack();
+				if (playerWeapon.hasEnchantments() && EnchantmentHelper.getLevel(ENCHANTMENT_TELEKINESIS, playerWeapon) > 0) {
+					lootTable.generateLoot(lootContext.build(LootContextTypes.ENTITY)).forEach(itemStack -> {
+						if (!player.inventory.insertStack(itemStack)) {
+							entityDropStack.dropStack(itemStack);
+						}
+					});
+					return false;
+				}
 			}
 			return true;
 		});

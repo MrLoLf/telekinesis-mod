@@ -19,9 +19,9 @@ import java.util.List;
 import static net.minecraft.block.Block.getDroppedStacks;
 
 @Mixin(Block.class)
-public class BlockItemDropEventMixin {
+public class BlockItemDropMixin {
     @Inject(at = @At("HEAD"), cancellable = true, method = "dropStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)V")
-    private static void dropStacks(BlockState state, World world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack, CallbackInfo ci) {
+    private static void generateBlockItemDropEvent(BlockState state, World world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack, CallbackInfo ci) {
         if (world instanceof ServerWorld) {
             List<ItemStack> itemStackList = getDroppedStacks(state, (ServerWorld)world, pos, blockEntity, entity, stack);
             boolean shouldDrop = BlockItemDropEvent.EVENT.invoker().onBlockItemDrop(state, world, pos, blockEntity, entity, stack, itemStackList);

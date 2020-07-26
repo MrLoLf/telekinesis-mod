@@ -4,10 +4,12 @@
   "package": "com.mymindstorm.telekinesis.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BlockItemDropEventMixin"
+    "BlockItemDropMixin",
+    "EntityItemDropMixin"
   ],
   "server": [
-    "BlockItemDropEventMixin"
+    "BlockItemDropMixin",
+    "EntityItemDropMixin"
   ],
   "injectors": {
     "defaultRequire": 1
