@@ -3,8 +3,8 @@
   "id": "telekinesis",
   "version": "${version}",
 
-  "name": "Telekinesis Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Telekinesis Enchantment",
+  "description": "Adds an enchantment to automatically put any dropped items into your inventory.",
   "authors": [
     {
       "name": "mymindstorm",

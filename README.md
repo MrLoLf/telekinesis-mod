@@ -1,9 +1,3 @@
-# Fabric Example Mod
+# Telekinesis Enchantment
 
-## Setup
-
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
-
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+This Fabric mod adds an enchantment inspired by Hypixel's SkyBlock that automatically puts any dropped items into your inventory. 
