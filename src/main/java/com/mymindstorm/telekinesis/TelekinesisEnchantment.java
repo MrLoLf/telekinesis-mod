@@ -6,7 +6,7 @@ import net.minecraft.entity.EquipmentSlot;
 
 public class TelekinesisEnchantment extends Enchantment {
     public TelekinesisEnchantment() {
-        super(Rarity.VERY_RARE, EnchantmentTarget.DIGGER, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
+        super(Rarity.UNCOMMON, EnchantmentTarget.DIGGER, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
     }
 
     public int getMinPower(int level) {

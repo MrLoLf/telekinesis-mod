@@ -1,6 +1,21 @@
 plugins {
 	id 'fabric-loom' version '0.4-SNAPSHOT'
 	id 'maven-publish'
+	id "com.matthewprenger.cursegradle" version "1.4.0"
+}
+
+curseforge {
+	apiKey = project.api_key
+	project {
+		id = '398198'
+		changelog = 'Initial release'
+		releaseType = 'release'
+		addGameVersion '1.16.1'
+
+		mainArtifact(jar) {
+			displayName = "Telekinesis version: $project.version"
+		}
+	}
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
