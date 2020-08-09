@@ -6,6 +6,7 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContextTypes;
@@ -13,7 +14,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.registry.Registry;
 
-import java.util.Arrays;
+import java.util.List;
 
 import static net.minecraft.block.Block.dropStack;
 
@@ -28,13 +29,21 @@ public class TelekinesisMod implements ModInitializer {
 	public void onInitialize() {
 		BlockItemDropEvent.EVENT.register((state, world, pos, blockEntity, entity, stack, drops) -> {
 			if (entity == null) {
-				// TODO: check for exact player instead of all
-				world.getEntities(PlayerEntity.class, new Box(pos.add(-5, -32, -5), pos.add(5, 32, 5)), null).forEach(player -> {
-					if (EnchantmentHelper.getLevel(ENCHANTMENT_TELEKINESIS, player.getItemsHand().iterator().next()) > 0) {
-						world.removeBlockEntity(pos);
-						drops.forEach(player.inventory::insertStack);
-					}
-				});
+				// Get all players that have enchantment in 5 block radius
+				List<PlayerEntity> players = world.getEntities(PlayerEntity.class, new Box(pos.add(-5, -32, -5), pos.add(5, 32, 5)), null);
+				players.removeIf(player -> EnchantmentHelper.getLevel(ENCHANTMENT_TELEKINESIS, player.getItemsHand().iterator().next()) < 1);
+				if (players.isEmpty()) {
+					return true;
+				} else {
+					// Get closest player
+					PlayerEntity player = world.getClosestEntity(players, TargetPredicate.DEFAULT, null, pos.getX(), pos.getY(), pos.getZ());
+					drops.forEach(itemStack -> {
+						if (!player.inventory.insertStack(itemStack)) {
+							dropStack(world, pos, itemStack);
+						}
+					});
+					return false;
+				}
 			}
 
 			if (EnchantmentHelper.getLevel(ENCHANTMENT_TELEKINESIS, stack) > 0) {
