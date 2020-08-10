@@ -1,5 +1,6 @@
 package com.mymindstorm.telekinesis.event;
 
+import com.mymindstorm.telekinesis.interfaces.EntityDropStack;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.damage.DamageSource;

@@ -2,6 +2,7 @@ package com.mymindstorm.telekinesis;
 
 import com.mymindstorm.telekinesis.event.BlockItemDropEvent;
 import com.mymindstorm.telekinesis.event.EntityItemDropEvent;
+import com.mymindstorm.telekinesis.interfaces.PlayerTelekinesisTracker;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -28,24 +29,40 @@ public class TelekinesisMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		BlockItemDropEvent.EVENT.register((state, world, pos, blockEntity, entity, stack, drops) -> {
+			// Tall block logic
 			if (entity == null) {
 				// Get all players that have enchantment in 5 block radius
-				List<PlayerEntity> players = world.getEntities(PlayerEntity.class, new Box(pos.add(-5, -32, -5), pos.add(5, 32, 5)), null);
-				players.removeIf(player -> EnchantmentHelper.getLevel(ENCHANTMENT_TELEKINESIS, player.getItemsHand().iterator().next()) < 1);
+				List<PlayerEntity> players = world.getEntities(PlayerEntity.class, new Box(pos.add(-5, -32, -5), pos.add(5, 32, 5)),
+						playerEntity -> EnchantmentHelper.getLevel(ENCHANTMENT_TELEKINESIS, playerEntity.getMainHandStack()) > 0);
 				if (players.isEmpty()) {
 					return true;
 				} else {
-					// Get closest player
-					PlayerEntity player = world.getClosestEntity(players, TargetPredicate.DEFAULT, null, pos.getX(), pos.getY(), pos.getZ());
+					// Find player that broke the block
+					PlayerEntity player = null;
+					for (PlayerEntity playerEntity : players) {
+						// Is the block break within one tick and one block of this player's last telekinesis block break?
+						if (((PlayerTelekinesisTracker)playerEntity).checkTelekinesisTick(world.getTime())
+							&& pos.isWithinDistance(((PlayerTelekinesisTracker)playerEntity).getLastTelekinesisBlockPos(), 2)) {
+							player = playerEntity;
+							break;
+						}
+					}
+					if (player == null) {
+						return true;
+					}
+					// Insert drops into inventory
+					PlayerEntity finalPlayer = player;
 					drops.forEach(itemStack -> {
-						if (!player.inventory.insertStack(itemStack)) {
+						if (!finalPlayer.inventory.insertStack(itemStack)) {
 							dropStack(world, pos, itemStack);
 						}
 					});
+					((PlayerTelekinesisTracker) player).setLastTelekinesisBreak(pos, world.getTime());
 					return false;
 				}
 			}
 
+			// Normal player block break
 			if (EnchantmentHelper.getLevel(ENCHANTMENT_TELEKINESIS, stack) > 0) {
 				// get player object
 				PlayerEntity player = world.getPlayerByUuid(entity.getUuid());
@@ -60,6 +77,7 @@ public class TelekinesisMod implements ModInitializer {
 					}
 				});
 
+				((PlayerTelekinesisTracker) player).setLastTelekinesisBreak(pos, world.getTime());
 				return false;
 			}
 			return true;
