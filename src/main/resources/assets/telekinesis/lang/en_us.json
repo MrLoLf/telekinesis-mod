@@ -1,3 +1,4 @@
 {
-  "enchantment.telekinesis.telekinesis": "Telekinesis"
+  "enchantment.telekinesis.telekinesis": "Telekinesis",
+  "enchantment.telekinesis.telekinesis.desc": "Dropped items will be automatically placed into your inventory."
 }
