@@ -6,7 +6,7 @@ import net.minecraft.entity.EquipmentSlot;
 
 public class TelekinesisEnchantment extends Enchantment {
     public TelekinesisEnchantment() {
-        super(Rarity.UNCOMMON, EnchantmentTarget.BREAKABLE, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
+        super(Rarity.VERY_RARE, EnchantmentTarget.BREAKABLE, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
     }
 
     @Override

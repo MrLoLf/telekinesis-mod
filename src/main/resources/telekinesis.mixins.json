@@ -8,11 +8,6 @@
     "EntityItemDropMixin",
     "PlayerTelekinesisTrackerMixin"
   ],
-  "server": [
-    "BlockItemDropMixin",
-    "EntityItemDropMixin",
-    "PlayerTelekinesisTrackerMixin"
-  ],
   "injectors": {
     "defaultRequire": 1
   }

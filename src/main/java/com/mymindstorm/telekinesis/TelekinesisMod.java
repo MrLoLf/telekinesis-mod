@@ -32,7 +32,7 @@ public class TelekinesisMod implements ModInitializer {
 			// Tall block logic
 			if (entity == null) {
 				// Get all players that have enchantment in 5 block radius
-				List<PlayerEntity> players = world.getEntities(PlayerEntity.class, new Box(pos.add(-5, -32, -5), pos.add(5, 32, 5)),
+				List<PlayerEntity> players = world.getEntitiesByClass(PlayerEntity.class, new Box(pos.add(-5, -32, -5), pos.add(5, 32, 5)),
 						playerEntity -> EnchantmentHelper.getLevel(ENCHANTMENT_TELEKINESIS, playerEntity.getMainHandStack()) > 0);
 				if (players.isEmpty()) {
 					return true;
