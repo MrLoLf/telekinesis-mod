@@ -9,14 +9,17 @@ public class TelekinesisEnchantment extends Enchantment {
         super(Rarity.UNCOMMON, EnchantmentTarget.BREAKABLE, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
     }
 
+    @Override
     public int getMinPower(int level) {
         return 15;
     }
 
+    @Override
     public int getMaxPower(int level) {
         return super.getMinPower(level) + 50;
     }
 
+    @Override
     public int getMaxLevel() {
         return 1;
     }

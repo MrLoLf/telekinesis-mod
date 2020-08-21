@@ -5,11 +5,13 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "BlockItemDropMixin",
-    "EntityItemDropMixin"
+    "EntityItemDropMixin",
+    "PlayerTelekinesisTrackerMixin"
   ],
   "server": [
     "BlockItemDropMixin",
-    "EntityItemDropMixin"
+    "EntityItemDropMixin",
+    "PlayerTelekinesisTrackerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
