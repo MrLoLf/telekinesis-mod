@@ -7,16 +7,16 @@
   "description": "Adds an enchantment to automatically put any dropped items into your inventory.",
   "authors": [
     {
-      "name": "mymindstorm",
+      "name": "Fabian Roscher",
       "contact": {
-        "homepage": "https://github.com/mymindstorm"
+        "homepage": "https://github.com/MrLoLf/telekinesis-mod"
       }
     }
   ],
   "contact": {
-    "homepage": "https://github.com/mymindstorm/telekinesis-mod",
-    "sources": "https://github.com/mymindstorm/telekinesis-mod.git",
-    "issues": "https://github.com/mymindstorm/telekinesis-mod/issues"
+    "homepage": "https://github.com/MrLoLf/telekinesis-mod",
+    "sources": "https://github.com/MrLoLf/telekinesis-mod.git",
+    "issues": "https://github.com/MrLoLf/telekinesis-mod/issues"
   },
 
   "license": "MIT",
@@ -25,15 +25,16 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.mymindstorm.telekinesis.TelekinesisMod"
+      "net.mrlolf.telekinesis.TelekinesisMod"
     ]
   },
   "mixins": [
     "telekinesis.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.7.4",
+    "fabricloader": ">=0.13.3",
     "fabric": "*",
-    "minecraft": "1.16.x"
+    "minecraft": "~1.18.2",
+    "java": ">=17"
   }
 }

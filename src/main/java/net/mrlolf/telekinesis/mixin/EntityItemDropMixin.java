@@ -1,6 +1,6 @@
-package com.mymindstorm.telekinesis.mixin;
+package net.mrlolf.telekinesis.mixin;
 
-import com.mymindstorm.telekinesis.event.EntityItemDropEvent;
+import net.mrlolf.telekinesis.event.EntityItemDropEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

@@ -1,4 +1,4 @@
-package com.mymindstorm.telekinesis.interfaces;
+package net.mrlolf.telekinesis.interfaces;
 
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;

@@ -1,6 +1,6 @@
-package com.mymindstorm.telekinesis.mixin;
+package net.mrlolf.telekinesis.mixin;
 
-import com.mymindstorm.telekinesis.event.BlockItemDropEvent;
+import net.mrlolf.telekinesis.event.BlockItemDropEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

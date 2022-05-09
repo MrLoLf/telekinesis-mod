@@ -1,6 +1,6 @@
-package com.mymindstorm.telekinesis.mixin;
+package net.mrlolf.telekinesis.mixin;
 
-import com.mymindstorm.telekinesis.interfaces.PlayerTelekinesisTracker;
+import net.mrlolf.telekinesis.interfaces.PlayerTelekinesisTracker;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;

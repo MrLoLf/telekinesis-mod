@@ -1,13 +1,12 @@
-package com.mymindstorm.telekinesis;
+package net.mrlolf.telekinesis;
 
-import com.mymindstorm.telekinesis.event.BlockItemDropEvent;
-import com.mymindstorm.telekinesis.event.EntityItemDropEvent;
-import com.mymindstorm.telekinesis.interfaces.PlayerTelekinesisTracker;
+import net.mrlolf.telekinesis.event.BlockItemDropEvent;
+import net.mrlolf.telekinesis.event.EntityItemDropEvent;
+import net.mrlolf.telekinesis.interfaces.PlayerTelekinesisTracker;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContextTypes;
@@ -20,7 +19,7 @@ import java.util.List;
 import static net.minecraft.block.Block.dropStack;
 
 public class TelekinesisMod implements ModInitializer {
-	private static Enchantment ENCHANTMENT_TELEKINESIS = Registry.register(
+	private static final Enchantment ENCHANTMENT_TELEKINESIS = Registry.register(
 			Registry.ENCHANTMENT,
 			new Identifier("telekinesis", "telekinesis"),
 			new TelekinesisEnchantment()
@@ -53,7 +52,7 @@ public class TelekinesisMod implements ModInitializer {
 					// Insert drops into inventory
 					PlayerEntity finalPlayer = player;
 					drops.forEach(itemStack -> {
-						if (!finalPlayer.inventory.insertStack(itemStack)) {
+						if (!finalPlayer.getInventory().insertStack(itemStack)) {
 							dropStack(world, pos, itemStack);
 						}
 					});
@@ -72,7 +71,7 @@ public class TelekinesisMod implements ModInitializer {
 
 				// insert drops into inventory
 				drops.forEach(itemStack -> {
-					if (!player.inventory.insertStack(itemStack)) {
+					if (!player.getInventory().insertStack(itemStack)) {
 						dropStack(world, pos, itemStack);
 					}
 				});
@@ -99,7 +98,7 @@ public class TelekinesisMod implements ModInitializer {
 				ItemStack playerWeapon = player.getMainHandStack();
 				if (playerWeapon.hasEnchantments() && EnchantmentHelper.getLevel(ENCHANTMENT_TELEKINESIS, playerWeapon) > 0) {
 					lootTable.generateLoot(lootContext.build(LootContextTypes.ENTITY)).forEach(itemStack -> {
-						if (!player.inventory.insertStack(itemStack)) {
+						if (!player.getInventory().insertStack(itemStack)) {
 							entityDropStack.dropStack(itemStack);
 						}
 					});
