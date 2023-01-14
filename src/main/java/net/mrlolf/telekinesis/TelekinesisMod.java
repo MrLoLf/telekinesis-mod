@@ -1,5 +1,7 @@
 package net.mrlolf.telekinesis;
 
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import net.mrlolf.telekinesis.event.BlockItemDropEvent;
 import net.mrlolf.telekinesis.event.EntityItemDropEvent;
 import net.mrlolf.telekinesis.interfaces.PlayerTelekinesisTracker;
@@ -17,7 +19,11 @@ import java.util.List;
 import static net.minecraft.block.Block.dropStack;
 
 public class TelekinesisMod implements ModInitializer {
-	private static Enchantment ENCHANTMENT_TELEKINESIS = new TelekinesisEnchantment();
+	private static final Enchantment ENCHANTMENT_TELEKINESIS = Registry.register(
+			Registry.ENCHANTMENT,
+			new Identifier("telekinesis", "telekinesis"),
+			new TelekinesisEnchantment()
+	);
 
 	@Override
 	public void onInitialize() {
