@@ -10,20 +10,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 
 import static net.minecraft.block.Block.dropStack;
 
 public class TelekinesisMod implements ModInitializer {
-	private static final Enchantment ENCHANTMENT_TELEKINESIS = Registry.register(
-			Registry.ENCHANTMENT,
-			new Identifier("telekinesis", "telekinesis"),
-			new TelekinesisEnchantment()
-	);
+	private static Enchantment ENCHANTMENT_TELEKINESIS = new TelekinesisEnchantment();
 
 	@Override
 	public void onInitialize() {
