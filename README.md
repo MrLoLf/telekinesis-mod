@@ -1,6 +1,6 @@
 # Telekinesis Enchantment
 
-Mod port of [Telekinesis Enchantment](https://www.curseforge.com/minecraft/mc-mods/telekinesis-enchantment) to 1.19.3 for fabric.
+Mod port of [Telekinesis Enchantment](https://www.curseforge.com/minecraft/mc-mods/telekinesis-enchantment) to 1.19.4 for fabric.
 
 [Fabric Api](https://www.curseforge.com/minecraft/mc-mods/fabric-api) is needed.
 
